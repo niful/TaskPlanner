@@ -399,7 +399,7 @@ function TaskItem({task,editingId,editText,onToggle,onEdit,onSaveEdit,onCancelEd
   const overdue = !task.is_completed && isPast(task.due_date)
   const isEditing = editingId===task.id
   return (
-    <div style={{display:'flex',alignItems:'flex-start',gap:10,padding:'12px 14px',borderRadius:10,border:`1.5px solid ${overdue?'#fca5a5':'#2e2b27'}`,background:overdue?'#2d1515':'#1e1c19',opacity:task.is_completed?.6:1,marginBottom:2}}>
+    <div style={{display:'flex',alignItems:'flex-start',gap:10,padding:'12px 14px',borderRadius:10,border:`1.5px solid ${overdue?'#fca5a5':'#2e2b27'}`,background:overdue?'#2d1515':'#252320',opacity:task.is_completed?.6:1,marginBottom:2,color:'#f0ece4'}}>
       <div onClick={()=>onToggle(task.id)}
         style={{width:18,height:18,minWidth:18,borderRadius:6,border:`1.8px solid ${task.is_completed?'#10b981':'#2e2b27'}`,background:task.is_completed?'#10b981':'transparent',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',marginTop:1,color:'white',fontSize:11}}>
         {task.is_completed&&'✓'}
