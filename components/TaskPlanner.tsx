@@ -173,7 +173,7 @@ export default function TaskPlanner() {
         </div>
       </div>
 
-      <div style={{display:'grid',gridTemplateColumns:'1fr',gap:16,alignItems:'start'}}>
+      <div style={{display:'grid',gridTemplateColumns:'clamp(280px,30%,340px) 1fr',gap:20,alignItems:'start'}}>
         {/* Left: Calendar */}
         <div>
           <div style={{background:'#1e1c19',border:'1px solid #2e2b27',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.4)'}}>
