@@ -255,14 +255,14 @@ export default function TaskPlanner() {
                   <input autoFocus value={newTitle} onChange={e=>setNewTitle(e.target.value)}
                     onKeyDown={e=>e.key==='Enter'&&addTask()}
                     placeholder="Заголовок задачи..."
-                    style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1.5px solid #2e2b27',background:'#1e1c19',fontSize:14,outline:'none',marginBottom:8,fontFamily:'inherit'}}/>
+                    style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1.5px solid #2e2b27',background:'#1e1c19',color:'#f0ece4',fontSize:14,outline:'none',marginBottom:8,fontFamily:'inherit'}}/>
                   <div style={{display:'flex',gap:8,marginBottom:8}}>
                     <select value={newCat} onChange={e=>setNewCat(e.target.value)}
-                      style={{flex:1,padding:'8px 12px',borderRadius:8,border:'1.5px solid #2e2b27',background:'#1e1c19',fontSize:14,fontFamily:'inherit',outline:'none'}}>
+                      style={{flex:1,padding:'8px 12px',borderRadius:8,border:'1.5px solid #2e2b27',background:'#1e1c19',color:'#f0ece4',fontSize:14,fontFamily:'inherit',outline:'none'}}>
                       {CATEGORIES.map(c=><option key={c.id} value={c.id}>{c.label}</option>)}
                     </select>
                     <input type="date" value={newDate} onChange={e=>setNewDate(e.target.value)}
-                      style={{padding:'8px 12px',borderRadius:8,border:'1.5px solid #2e2b27',background:'#1e1c19',fontSize:14,fontFamily:'inherit',outline:'none'}}/>
+                      style={{padding:'8px 12px',borderRadius:8,border:'1.5px solid #2e2b27',background:'#1e1c19',color:'#f0ece4',fontSize:14,fontFamily:'inherit',outline:'none'}}/>
                   </div>
                   <div style={{display:'flex',gap:8}}>
                     <button onClick={addTask} style={{padding:'8px 18px',borderRadius:8,border:'none',background:'#2d2620',color:'white',fontSize:13,fontWeight:500,cursor:'pointer'}}>Добавить</button>
