@@ -173,7 +173,7 @@ export default function TaskPlanner() {
         </div>
       </div>
 
-      <div style={{display:'grid',gridTemplateColumns:'clamp(280px,30%,340px) 1fr',gap:20,alignItems:'start'}}>
+      <div style={{display:'grid',gridTemplateColumns:'1fr',gap:16,alignItems:'start'}}}>
         {/* Left: Calendar */}
         <div>
           <div style={{background:'#1e1c19',border:'1px solid #2e2b27',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.4)'}}>
@@ -399,7 +399,7 @@ function TaskItem({task,editingId,editText,onToggle,onEdit,onSaveEdit,onCancelEd
   const overdue = !task.is_completed && isPast(task.due_date)
   const isEditing = editingId===task.id
   return (
-    <div style={{display:'flex',alignItems:'flex-start',gap:10,padding:'12px 14px',borderRadius:10,border:`1.5px solid ${overdue?'#fca5a5':'#2e2b27'}`,background:overdue?'#fef2f2':'white',opacity:task.is_completed?.6:1,marginBottom:2}}>
+    <div style={{display:'flex',alignItems:'flex-start',gap:10,padding:'12px 14px',borderRadius:10,border:`1.5px solid ${overdue?'#fca5a5':'#2e2b27'}`,background:overdue?'#2d1515':'#1e1c19',opacity:task.is_completed?.6:1,marginBottom:2}}>
       <div onClick={()=>onToggle(task.id)}
         style={{width:18,height:18,minWidth:18,borderRadius:6,border:`1.8px solid ${task.is_completed?'#10b981':'#2e2b27'}`,background:task.is_completed?'#10b981':'transparent',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',marginTop:1,color:'white',fontSize:11}}>
         {task.is_completed&&'✓'}
