@@ -166,7 +166,7 @@ export default function TaskPlanner() {
         <div style={{display:'flex',gap:6}}>
           {(['calendar','search','stats'] as const).map(v => (
             <button key={v} onClick={()=>setView(v)}
-              style={{padding:'7px 14px',borderRadius:99,border:'1.5px solid',borderColor:view===v?'#2d2620':'#e5e0d8',background:view===v?'#2d2620':'white',color:view===v?'white':'#6b6560',fontWeight:500,fontSize:13,cursor:'pointer'}}>
+              style={{padding:'7px 14px',borderRadius:99,border:'1.5px solid',borderColor:view===v?'#2d2620':'#2e2b27',background:view===v?'#2d2620':'white',color:view===v?'white':'#9e9890',fontWeight:500,fontSize:13,cursor:'pointer'}}>
               {v==='calendar'?'Календарь':v==='search'?'Поиск':'Статистика'}
             </button>
           ))}
@@ -176,19 +176,19 @@ export default function TaskPlanner() {
       <div style={{display:'grid',gridTemplateColumns:'clamp(280px,30%,340px) 1fr',gap:20,alignItems:'start'}}>
         {/* Left: Calendar */}
         <div>
-          <div style={{background:'white',border:'1px solid #e5e0d8',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.07)'}}>
-            <div style={{padding:'18px 20px 14px',borderBottom:'1px solid #e5e0d8',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+          <div style={{background:'#1e1c19',border:'1px solid #2e2b27',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.4)'}}>
+            <div style={{padding:'18px 20px 14px',borderBottom:'1px solid #2e2b27',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
               <span style={{fontWeight:600,fontSize:'1.05rem'}}>Календарь</span>
               <div style={{display:'flex',alignItems:'center',gap:6}}>
-                <button onClick={prevMonth} style={{width:30,height:30,borderRadius:8,border:'1px solid #e5e0d8',background:'transparent',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}>‹</button>
+                <button onClick={prevMonth} style={{width:30,height:30,borderRadius:8,border:'1px solid #2e2b27',background:'transparent',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}>‹</button>
                 <span style={{fontSize:13,fontWeight:500,minWidth:130,textAlign:'center',textTransform:'capitalize'}}>{monthLabel(calYear,calMonth)}</span>
-                <button onClick={nextMonth} style={{width:30,height:30,borderRadius:8,border:'1px solid #e5e0d8',background:'transparent',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}>›</button>
+                <button onClick={nextMonth} style={{width:30,height:30,borderRadius:8,border:'1px solid #2e2b27',background:'transparent',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}>›</button>
               </div>
             </div>
             <div style={{padding:'16px 20px'}}>
               <div style={{display:'grid',gridTemplateColumns:'repeat(7,1fr)',marginBottom:4}}>
                 {['Пн','Вт','Ср','Чт','Пт','Сб','Вс'].map(w=>(
-                  <div key={w} style={{textAlign:'center',fontSize:11,fontWeight:600,color:'#a09890',letterSpacing:'.06em',padding:'4px 0'}}>{w}</div>
+                  <div key={w} style={{textAlign:'center',fontSize:11,fontWeight:600,color:'#5a5550',letterSpacing:'.06em',padding:'4px 0'}}>{w}</div>
                 ))}
               </div>
               <div style={{display:'grid',gridTemplateColumns:'repeat(7,1fr)',gap:2}}>
@@ -200,7 +200,7 @@ export default function TaskPlanner() {
                   const hasOv = hasTasks && isPast(iso) && (tasksByDate[iso]||[]).some(t=>!t.is_completed)
                   return (
                     <div key={iso} onClick={()=>selectDay(d)}
-                      style={{aspectRatio:'1',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',borderRadius:10,cursor:'pointer',fontSize:13,fontWeight:isTod?600:400,color:isSel?'white':hasOv?'#dc2626':'#6b6560',background:isSel?'#2d2620':'transparent',border:`1.5px solid ${isSel?'#2d2620':'transparent'}`,position:'relative'}}>
+                      style={{aspectRatio:'1',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',borderRadius:10,cursor:'pointer',fontSize:13,fontWeight:isTod?600:400,color:isSel?'white':hasOv?'#dc2626':'#9e9890',background:isSel?'#2d2620':'transparent',border:`1.5px solid ${isSel?'#2d2620':'transparent'}`,position:'relative'}}>
                       {parseInt(d)}
                       {hasTasks && <span style={{width:4,height:4,borderRadius:'50%',background:isSel?'rgba(255,255,255,.6)':'#6366f1',position:'absolute',bottom:5}}/>}
                     </div>
@@ -210,12 +210,12 @@ export default function TaskPlanner() {
             </div>
           </div>
           {/* Mini stats */}
-          <div style={{background:'white',border:'1px solid #e5e0d8',borderRadius:14,padding:16,marginTop:16,boxShadow:'0 2px 8px rgba(0,0,0,.07)'}}>
+          <div style={{background:'#1e1c19',border:'1px solid #2e2b27',borderRadius:14,padding:16,marginTop:16,boxShadow:'0 2px 8px rgba(0,0,0,.4)'}}>
             <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-              <span style={{fontSize:13,color:'#6b6560'}}>Выполнено всего</span>
+              <span style={{fontSize:13,color:'#9e9890'}}>Выполнено всего</span>
               <span style={{fontSize:'1.4rem',fontWeight:700}}>{stats.completed}/{stats.total}</span>
             </div>
-            <div style={{height:6,borderRadius:99,background:'#e5e0d8',marginTop:8,overflow:'hidden'}}>
+            <div style={{height:6,borderRadius:99,background:'#2e2b27',marginTop:8,overflow:'hidden'}}>
               <div style={{height:'100%',borderRadius:99,background:'#10b981',width:stats.total?`${Math.round(stats.completed/stats.total*100)}%`:'0%',transition:'width .5s'}}/>
             </div>
             {stats.overdue>0 && <div style={{marginTop:8,fontSize:12,color:'#dc2626'}}>⚠️ {stats.overdue} просроченных задач</div>}
@@ -225,18 +225,18 @@ export default function TaskPlanner() {
         {/* Right */}
         <div>
           {/* Search + filters */}
-          <div style={{background:'white',border:'1px solid #e5e0d8',borderRadius:14,padding:16,marginBottom:16,boxShadow:'0 2px 8px rgba(0,0,0,.07)'}}>
+          <div style={{background:'#1e1c19',border:'1px solid #2e2b27',borderRadius:14,padding:16,marginBottom:16,boxShadow:'0 2px 8px rgba(0,0,0,.4)'}}>
             <div style={{position:'relative'}}>
-              <span style={{position:'absolute',left:10,top:'50%',transform:'translateY(-50%)',color:'#a09890',fontSize:15}}>🔍</span>
+              <span style={{position:'absolute',left:10,top:'50%',transform:'translateY(-50%)',color:'#5a5550',fontSize:15}}>🔍</span>
               <input value={searchQ} onChange={e=>{setSearchQ(e.target.value);if(e.target.value)setView('search')}}
                 placeholder="Поиск по всем задачам..."
-                style={{width:'100%',padding:'9px 12px 9px 34px',borderRadius:8,border:'1.5px solid #e5e0d8',background:'#f7f6f3',fontSize:14,outline:'none',fontFamily:'inherit'}}/>
+                style={{width:'100%',padding:'9px 12px 9px 34px',borderRadius:8,border:'1.5px solid #2e2b27',background:'#252320',fontSize:14,outline:'none',fontFamily:'inherit'}}/>
             </div>
             <div style={{display:'flex',gap:6,flexWrap:'wrap',marginTop:10}}>
-              <button onClick={()=>setFilterCat(null)} style={{padding:'4px 11px',borderRadius:99,border:'1.5px solid',borderColor:!filterCat?'#2d2620':'#e5e0d8',background:!filterCat?'#2d2620':'transparent',color:!filterCat?'white':'#6b6560',fontSize:12,fontWeight:500,cursor:'pointer'}}>Все</button>
+              <button onClick={()=>setFilterCat(null)} style={{padding:'4px 11px',borderRadius:99,border:'1.5px solid',borderColor:!filterCat?'#2d2620':'#2e2b27',background:!filterCat?'#2d2620':'transparent',color:!filterCat?'white':'#9e9890',fontSize:12,fontWeight:500,cursor:'pointer'}}>Все</button>
               {CATEGORIES.map(cat=>(
                 <button key={cat.id} onClick={()=>setFilterCat(filterCat===cat.id?null:cat.id)}
-                  style={{padding:'4px 11px',borderRadius:99,border:'1.5px solid',borderColor:filterCat===cat.id?cat.color:'#e5e0d8',background:filterCat===cat.id?cat.color:'transparent',color:filterCat===cat.id?'white':'#6b6560',fontSize:12,fontWeight:500,cursor:'pointer'}}>
+                  style={{padding:'4px 11px',borderRadius:99,border:'1.5px solid',borderColor:filterCat===cat.id?cat.color:'#2e2b27',background:filterCat===cat.id?cat.color:'transparent',color:filterCat===cat.id?'white':'#9e9890',fontSize:12,fontWeight:500,cursor:'pointer'}}>
                   {cat.label}
                 </button>
               ))}
@@ -247,39 +247,39 @@ export default function TaskPlanner() {
           {view==='calendar' && (
             <div>
               {!addOpen ? (
-                <button onClick={()=>setAddOpen(true)} style={{width:'100%',padding:'10px',borderRadius:10,border:'1.5px dashed #e5e0d8',background:'transparent',fontSize:14,color:'#6b6560',cursor:'pointer',marginBottom:12}}>
+                <button onClick={()=>setAddOpen(true)} style={{width:'100%',padding:'10px',borderRadius:10,border:'1.5px dashed #e5e0d8',background:'transparent',fontSize:14,color:'#9e9890',cursor:'pointer',marginBottom:12}}>
                   + Добавить задачу на {formatDate(selectedDate)}
                 </button>
               ) : (
-                <div style={{background:'#f7f6f3',border:'1.5px solid #e5e0d8',borderRadius:14,padding:16,marginBottom:12}}>
+                <div style={{background:'#252320',border:'1.5px solid #2e2b27',borderRadius:14,padding:16,marginBottom:12}}>
                   <input autoFocus value={newTitle} onChange={e=>setNewTitle(e.target.value)}
                     onKeyDown={e=>e.key==='Enter'&&addTask()}
                     placeholder="Заголовок задачи..."
-                    style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1.5px solid #e5e0d8',background:'white',fontSize:14,outline:'none',marginBottom:8,fontFamily:'inherit'}}/>
+                    style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1.5px solid #2e2b27',background:'#1e1c19',fontSize:14,outline:'none',marginBottom:8,fontFamily:'inherit'}}/>
                   <div style={{display:'flex',gap:8,marginBottom:8}}>
                     <select value={newCat} onChange={e=>setNewCat(e.target.value)}
-                      style={{flex:1,padding:'8px 12px',borderRadius:8,border:'1.5px solid #e5e0d8',background:'white',fontSize:14,fontFamily:'inherit',outline:'none'}}>
+                      style={{flex:1,padding:'8px 12px',borderRadius:8,border:'1.5px solid #2e2b27',background:'#1e1c19',fontSize:14,fontFamily:'inherit',outline:'none'}}>
                       {CATEGORIES.map(c=><option key={c.id} value={c.id}>{c.label}</option>)}
                     </select>
                     <input type="date" value={newDate} onChange={e=>setNewDate(e.target.value)}
-                      style={{padding:'8px 12px',borderRadius:8,border:'1.5px solid #e5e0d8',background:'white',fontSize:14,fontFamily:'inherit',outline:'none'}}/>
+                      style={{padding:'8px 12px',borderRadius:8,border:'1.5px solid #2e2b27',background:'#1e1c19',fontSize:14,fontFamily:'inherit',outline:'none'}}/>
                   </div>
                   <div style={{display:'flex',gap:8}}>
                     <button onClick={addTask} style={{padding:'8px 18px',borderRadius:8,border:'none',background:'#2d2620',color:'white',fontSize:13,fontWeight:500,cursor:'pointer'}}>Добавить</button>
-                    <button onClick={()=>{setAddOpen(false);setNewTitle('')}} style={{padding:'8px 18px',borderRadius:8,border:'1.5px solid #e5e0d8',background:'transparent',fontSize:13,cursor:'pointer'}}>Отмена</button>
+                    <button onClick={()=>{setAddOpen(false);setNewTitle('')}} style={{padding:'8px 18px',borderRadius:8,border:'1.5px solid #2e2b27',background:'transparent',fontSize:13,cursor:'pointer'}}>Отмена</button>
                   </div>
                 </div>
               )}
-              <div style={{background:'white',border:'1px solid #e5e0d8',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.07)'}}>
-                <div style={{padding:'14px 18px',borderBottom:'1px solid #e5e0d8',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                  <span style={{fontWeight:600}}>{formatDate(selectedDate)}{selectedDate===today()&&<span style={{marginLeft:8,fontSize:11,color:'#a09890',textTransform:'uppercase',letterSpacing:'.06em'}}>сегодня</span>}</span>
-                  <span style={{fontSize:12,color:'#a09890'}}>{todayTasks.length} задач</span>
+              <div style={{background:'#1e1c19',border:'1px solid #2e2b27',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.4)'}}>
+                <div style={{padding:'14px 18px',borderBottom:'1px solid #2e2b27',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                  <span style={{fontWeight:600}}>{formatDate(selectedDate)}{selectedDate===today()&&<span style={{marginLeft:8,fontSize:11,color:'#5a5550',textTransform:'uppercase',letterSpacing:'.06em'}}>сегодня</span>}</span>
+                  <span style={{fontSize:12,color:'#5a5550'}}>{todayTasks.length} задач</span>
                 </div>
                 <div style={{padding:'14px 16px'}}>
                   {todayTasks.length===0 ? (
-                    <div style={{textAlign:'center',padding:'48px 20px',color:'#a09890'}}>
+                    <div style={{textAlign:'center',padding:'48px 20px',color:'#5a5550'}}>
                       <div style={{fontSize:'2rem',marginBottom:12}}>📋</div>
-                      <div style={{fontSize:15,color:'#6b6560',marginBottom:6}}>Задач нет</div>
+                      <div style={{fontSize:15,color:'#9e9890',marginBottom:6}}>Задач нет</div>
                       <div style={{fontSize:13}}>На этот день задач пока нет. Добавьте первую!</div>
                     </div>
                   ) : (
@@ -299,19 +299,19 @@ export default function TaskPlanner() {
 
           {/* Search view */}
           {view==='search' && (
-            <div style={{background:'white',border:'1px solid #e5e0d8',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.07)'}}>
-              <div style={{padding:'14px 18px',borderBottom:'1px solid #e5e0d8',display:'flex',justifyContent:'space-between'}}>
+            <div style={{background:'#1e1c19',border:'1px solid #2e2b27',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.4)'}}>
+              <div style={{padding:'14px 18px',borderBottom:'1px solid #2e2b27',display:'flex',justifyContent:'space-between'}}>
                 <span style={{fontWeight:600}}>Результаты поиска</span>
-                <span style={{fontSize:12,color:'#a09890'}}>{searchResults.reduce((s,[,a])=>s+a.length,0)} задач</span>
+                <span style={{fontSize:12,color:'#5a5550'}}>{searchResults.reduce((s,[,a])=>s+a.length,0)} задач</span>
               </div>
               <div style={{padding:'14px 16px'}}>
                 {!searchQ.trim() ? (
-                  <div style={{textAlign:'center',padding:'48px 20px',color:'#a09890'}}>
+                  <div style={{textAlign:'center',padding:'48px 20px',color:'#5a5550'}}>
                     <div style={{fontSize:'2rem',marginBottom:12}}>🔍</div>
                     <div style={{fontSize:13}}>Введите запрос для поиска</div>
                   </div>
                 ) : searchResults.length===0 ? (
-                  <div style={{textAlign:'center',padding:'48px 20px',color:'#a09890'}}>
+                  <div style={{textAlign:'center',padding:'48px 20px',color:'#5a5550'}}>
                     <div style={{fontSize:'2rem',marginBottom:12}}>😶</div>
                     <div style={{fontSize:13}}>Ничего не найдено</div>
                   </div>
@@ -319,7 +319,7 @@ export default function TaskPlanner() {
                   <div style={{display:'flex',flexDirection:'column',gap:8}}>
                     {searchResults.map(([date,arr])=>(
                       <div key={date}>
-                        <div style={{fontSize:11,fontWeight:600,color:'#a09890',letterSpacing:'.06em',textTransform:'uppercase',marginTop:14,marginBottom:6,paddingBottom:4,borderBottom:'1px solid #e5e0d8'}}>{formatDate(date)}</div>
+                        <div style={{fontSize:11,fontWeight:600,color:'#5a5550',letterSpacing:'.06em',textTransform:'uppercase',marginTop:14,marginBottom:6,paddingBottom:4,borderBottom:'1px solid #2e2b27'}}>{formatDate(date)}</div>
                         {arr.map(task=>(
                           <TaskItem key={task.id} task={task} editingId={editingId} editText={editText}
                             onToggle={toggleTask} onEdit={(id,t)=>{setEditingId(id);setEditText(t)}}
@@ -337,8 +337,8 @@ export default function TaskPlanner() {
           {/* Stats view */}
           {view==='stats' && (
             <div>
-              <div style={{background:'white',border:'1px solid #e5e0d8',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.07)',marginBottom:16}}>
-                <div style={{padding:'14px 18px',borderBottom:'1px solid #e5e0d8'}}><span style={{fontWeight:600}}>Этот месяц</span></div>
+              <div style={{background:'#1e1c19',border:'1px solid #2e2b27',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.4)',marginBottom:16}}>
+                <div style={{padding:'14px 18px',borderBottom:'1px solid #2e2b27'}}><span style={{fontWeight:600}}>Этот месяц</span></div>
                 <div style={{padding:16,display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:12}}>
                   {[
                     {num:stats.monthDone,label:'Выполнено задач',color:'#10b981'},
@@ -346,23 +346,23 @@ export default function TaskPlanner() {
                     {num:stats.overdue,label:'Просроченных',color:stats.overdue>0?'#dc2626':'#10b981'},
                     {num:stats.total?Math.round(stats.completed/stats.total*100):0,label:'Общий прогресс %',color:'#f59e0b'},
                   ].map(({num,label,color})=>(
-                    <div key={label} style={{background:'#f7f6f3',borderRadius:10,padding:'14px 16px',border:'1px solid #e5e0d8'}}>
+                    <div key={label} style={{background:'#252320',borderRadius:10,padding:'14px 16px',border:'1px solid #2e2b27'}}>
                       <div style={{fontSize:'2rem',fontWeight:700,color,lineHeight:1}}>{num}</div>
-                      <div style={{fontSize:12,color:'#a09890',marginTop:4}}>{label}</div>
+                      <div style={{fontSize:12,color:'#5a5550',marginTop:4}}>{label}</div>
                     </div>
                   ))}
                 </div>
               </div>
-              <div style={{background:'white',border:'1px solid #e5e0d8',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.07)'}}>
-                <div style={{padding:'14px 18px',borderBottom:'1px solid #e5e0d8'}}><span style={{fontWeight:600}}>По категориям</span></div>
+              <div style={{background:'#1e1c19',border:'1px solid #2e2b27',borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(0,0,0,.4)'}}>
+                <div style={{padding:'14px 18px',borderBottom:'1px solid #2e2b27'}}><span style={{fontWeight:600}}>По категориям</span></div>
                 <div style={{padding:'8px 16px'}}>
                   {stats.catStats.map(cat=>(
-                    <div key={cat.id} style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'8px 0',borderBottom:'1px solid #f0ede8'}}>
+                    <div key={cat.id} style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'8px 0',borderBottom:'1px solid #2e2b27'}}>
                       <span style={{fontSize:14,display:'flex',alignItems:'center',gap:8}}>
                         <span style={{width:8,height:8,borderRadius:'50%',background:cat.color,display:'inline-block'}}/>
                         {cat.label}
                       </span>
-                      <span style={{fontSize:13,color:'#6b6560'}}>{cat.done}/{cat.total}</span>
+                      <span style={{fontSize:13,color:'#9e9890'}}>{cat.done}/{cat.total}</span>
                     </div>
                   ))}
                 </div>
@@ -375,11 +375,11 @@ export default function TaskPlanner() {
       {/* Delete modal */}
       {deleteModal && (
         <div onClick={()=>setDeleteModal(null)} style={{position:'fixed',inset:0,background:'rgba(0,0,0,.45)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:100,padding:16}}>
-          <div onClick={e=>e.stopPropagation()} style={{background:'white',borderRadius:14,padding:24,maxWidth:360,width:'100%',boxShadow:'0 4px 20px rgba(0,0,0,.15)'}}>
+          <div onClick={e=>e.stopPropagation()} style={{background:'#1e1c19',borderRadius:14,padding:24,maxWidth:360,width:'100%',boxShadow:'0 4px 20px rgba(0,0,0,.15)'}}>
             <div style={{fontWeight:700,fontSize:'1.1rem',marginBottom:10}}>Удалить задачу?</div>
-            <div style={{fontSize:14,color:'#6b6560',marginBottom:20}}>Это действие нельзя отменить.</div>
+            <div style={{fontSize:14,color:'#9e9890',marginBottom:20}}>Это действие нельзя отменить.</div>
             <div style={{display:'flex',gap:8,justifyContent:'flex-end'}}>
-              <button onClick={()=>setDeleteModal(null)} style={{padding:'8px 18px',borderRadius:8,border:'1.5px solid #e5e0d8',background:'transparent',fontSize:13,cursor:'pointer'}}>Отмена</button>
+              <button onClick={()=>setDeleteModal(null)} style={{padding:'8px 18px',borderRadius:8,border:'1.5px solid #2e2b27',background:'transparent',fontSize:13,cursor:'pointer'}}>Отмена</button>
               <button onClick={()=>deleteTask(deleteModal)} style={{padding:'8px 18px',borderRadius:8,border:'none',background:'#fef2f2',color:'#dc2626',fontSize:13,fontWeight:500,cursor:'pointer'}}>Удалить</button>
             </div>
           </div>
@@ -399,18 +399,18 @@ function TaskItem({task,editingId,editText,onToggle,onEdit,onSaveEdit,onCancelEd
   const overdue = !task.is_completed && isPast(task.due_date)
   const isEditing = editingId===task.id
   return (
-    <div style={{display:'flex',alignItems:'flex-start',gap:10,padding:'12px 14px',borderRadius:10,border:`1.5px solid ${overdue?'#fca5a5':'#e5e0d8'}`,background:overdue?'#fef2f2':'white',opacity:task.is_completed?.6:1,marginBottom:2}}>
+    <div style={{display:'flex',alignItems:'flex-start',gap:10,padding:'12px 14px',borderRadius:10,border:`1.5px solid ${overdue?'#fca5a5':'#2e2b27'}`,background:overdue?'#fef2f2':'white',opacity:task.is_completed?.6:1,marginBottom:2}}>
       <div onClick={()=>onToggle(task.id)}
-        style={{width:18,height:18,minWidth:18,borderRadius:6,border:`1.8px solid ${task.is_completed?'#10b981':'#e5e0d8'}`,background:task.is_completed?'#10b981':'transparent',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',marginTop:1,color:'white',fontSize:11}}>
+        style={{width:18,height:18,minWidth:18,borderRadius:6,border:`1.8px solid ${task.is_completed?'#10b981':'#2e2b27'}`,background:task.is_completed?'#10b981':'transparent',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',marginTop:1,color:'white',fontSize:11}}>
         {task.is_completed&&'✓'}
       </div>
       <div style={{flex:1,minWidth:0}}>
         {isEditing ? (
           <input autoFocus value={editText} onChange={e=>onEditTextChange(e.target.value)}
             onKeyDown={e=>{if(e.key==='Enter')onSaveEdit(task.id);if(e.key==='Escape')onCancelEdit()}}
-            style={{width:'100%',padding:'4px 8px',borderRadius:6,border:'1.5px solid #e5e0d8',fontSize:14,outline:'none',fontFamily:'inherit'}}/>
+            style={{width:'100%',padding:'4px 8px',borderRadius:6,border:'1.5px solid #2e2b27',fontSize:14,outline:'none',fontFamily:'inherit'}}/>
         ) : (
-          <div style={{fontSize:14,textDecoration:task.is_completed?'line-through':'none',color:overdue?'#dc2626':'#1a1814',wordBreak:'break-word'}}>{task.title}</div>
+          <div style={{fontSize:14,textDecoration:task.is_completed?'line-through':'none',color:overdue?'#dc2626':'#f0ece4',wordBreak:'break-word'}}>{task.title}</div>
         )}
         <div style={{display:'flex',alignItems:'center',gap:6,marginTop:4,flexWrap:'wrap'}}>
           <span style={{padding:'2px 8px',borderRadius:99,fontSize:11,fontWeight:500,background:cat.bg,color:cat.color}}>{cat.label}</span>
@@ -419,14 +419,14 @@ function TaskItem({task,editingId,editText,onToggle,onEdit,onSaveEdit,onCancelEd
       </div>
       {!isEditing && (
         <div style={{display:'flex',gap:4}}>
-          <button onClick={()=>onEdit(task.id,task.title)} style={{width:28,height:28,borderRadius:7,border:'1px solid #e5e0d8',background:'#f7f6f3',color:'#6b6560',cursor:'pointer',fontSize:13}}>✎</button>
-          <button onClick={()=>onDelete(task.id)} style={{width:28,height:28,borderRadius:7,border:'1px solid #e5e0d8',background:'#f7f6f3',color:'#6b6560',cursor:'pointer',fontSize:13}}>✕</button>
+          <button onClick={()=>onEdit(task.id,task.title)} style={{width:28,height:28,borderRadius:7,border:'1px solid #2e2b27',background:'#252320',color:'#9e9890',cursor:'pointer',fontSize:13}}>✎</button>
+          <button onClick={()=>onDelete(task.id)} style={{width:28,height:28,borderRadius:7,border:'1px solid #2e2b27',background:'#252320',color:'#9e9890',cursor:'pointer',fontSize:13}}>✕</button>
         </div>
       )}
       {isEditing && (
         <div style={{display:'flex',gap:6,alignItems:'center'}}>
           <button onClick={()=>onSaveEdit(task.id)} style={{padding:'4px 10px',borderRadius:7,border:'none',background:'#2d2620',color:'white',fontSize:12,cursor:'pointer'}}>Сохранить</button>
-          <button onClick={onCancelEdit} style={{padding:'4px 8px',borderRadius:7,border:'1px solid #e5e0d8',background:'transparent',fontSize:12,cursor:'pointer'}}>✕</button>
+          <button onClick={onCancelEdit} style={{padding:'4px 8px',borderRadius:7,border:'1px solid #2e2b27',background:'transparent',fontSize:12,cursor:'pointer'}}>✕</button>
         </div>
       )}
     </div>
